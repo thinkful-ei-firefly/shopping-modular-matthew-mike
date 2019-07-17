@@ -23,27 +23,25 @@ const store = (function() {
     }
   };
 
-  const findAndToggleChecked = id => {
+  function findAndToggleChecked(id) {
     const selectedItem = this.findById(id);
     selectedItem.checked = !selectedItem.checked;
-  };
+  }
 
-  const findAndUpdateName = (id, newName) => {
+  function findAndUpdateName(id, newName) {
     try {
       Item.validateName(newName);
       const selectedItem = this.findById(id);
       selectedItem.name = newName;
     } catch (error) {
-      console.log(error.message);  
+      console.log(error.message);
     }
-  };
+  }
 
   const findAndDelete = id => {
-    const index = items.findIndex(item => item.id === id); 
+    const index = items.findIndex(item => item.id === id);
     items.splice(index, 1);
   };
-
-
 
   const hideCheckedItems = false;
   const searchTerm = "";
@@ -55,6 +53,6 @@ const store = (function() {
     addItem,
     findAndToggleChecked,
     findAndUpdateName,
-    findAndDelete,
+    findAndDelete
   };
 })();
