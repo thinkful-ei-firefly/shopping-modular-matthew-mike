@@ -10,11 +10,51 @@ const store = (function() {
     { id: cuid(), name: "bread", checked: false }
   ];
 
+  const findById = id => {
+    return items.find(item => item.id === id);
+  };
+
+  const addItem = name => {
+    try {
+      Item.validateName(name);
+      items.push(Item.Create(name));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const findAndToggleChecked = id => {
+    const selectedItem = this.findById(id);
+    selectedItem.checked = !selectedItem.checked;
+  };
+
+  const findAndUpdateName = (id, newName) => {
+    try {
+      Item.validateName(newName);
+      const selectedItem = this.findById(id);
+      selectedItem.name = newName;
+    } catch (error) {
+      console.log(error.message);  
+    }
+  };
+
+  const findAndDelete = id => {
+    const index = items.findIndex(item => item.id === id); 
+    items.splice(index, 1);
+  };
+
+
+
   const hideCheckedItems = false;
   const searchTerm = "";
   return {
     items,
     hideCheckedItems,
-    searchTerm
+    searchTerm,
+    findById,
+    addItem,
+    findAndToggleChecked,
+    findAndUpdateName,
+    findAndDelete,
   };
 })();

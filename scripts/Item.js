@@ -1,8 +1,8 @@
-"use-strict";
+'use-strict';
 const Item = (function() {
   const validateName = name => {
     if (!name) {
-      throw new TypeError("Name does not exist");
+      throw new TypeError('Name does not exist');
     }
   };
   const Create = name => ({
